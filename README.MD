@@ -45,6 +45,6 @@ To get started with the **Laptop Shop** application, follow these steps:
 Start by cloning the repository to your local machine:
 
 ```bash
-git clone https://github.com/username/laptop-shop.git
+git clone https://github.com/mtunsnef/laptop-shop.git
 cd laptop-shop
 ```
