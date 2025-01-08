@@ -30,4 +30,9 @@ public class UserService {
     public User findUserByEmail(String email) {
         return this.userRepository.findUserByEmail(email);
     }
+
+    public User findUserById(long id) {
+        return this.userRepository.findUserById(id);
+    }
+
 }
