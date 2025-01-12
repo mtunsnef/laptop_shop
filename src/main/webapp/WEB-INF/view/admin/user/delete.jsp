@@ -26,27 +26,23 @@
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                                     <li class="breadcrumb-item"><a href="/admin/user">Users</a></li>
-                                    <li class="breadcrumb-item active">User Detail</li>
+                                    <li class="breadcrumb-item active">Delete User</li>
                                 </ol>
                                 <div>
                                     <div class="row">
-                                        <div class="col-12 mx-auto">
-                                            <div class="d-flex justify-content-between">
-                                                <h3>Detail User</h3>
-                                            </div>
+                                        <div class="col-md-6 col-12 mx-auto">
+                                            <h3>Delete a user</h3>
                                             <hr />
-                                            <div class="card" style="width: 70%">
-                                                <div class="card-header fw-bold">
-                                                    User Information
+                                            <form:form action="/admin/user/delete" method="post"
+                                                modelAttribute="deleteUser">
+                                                <div class="mb-3" hidden>
+                                                    <form:input path="id" type="text" class="form-control" />
                                                 </div>
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">ID: ${userId.id}</li>
-                                                    <li class="list-group-item">Email: ${userId.email}</li>
-                                                    <li class="list-group-item">Full name: ${userId.fullName}</li>
-                                                    <li class="list-group-item">Phone: ${userId.phone}</li>
-                                                    <li class="list-group-item">Address: ${userId.address}</li>
-                                                </ul>
-                                            </div>
+                                                <div class="alert alert-danger" role="alert">
+                                                    Are you sure to delete this user with id = ${deleteUser.id}?
+                                                </div>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form:form>
                                         </div>
                                     </div>
                                 </div>

@@ -22,34 +22,12 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage Users</h1>
+                                <h1 class="mt-4">Manage Products</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="/admin/user">Users</a></li>
-                                    <li class="breadcrumb-item active">User Detail</li>
+                                    <li class="breadcrumb-item active">Products</li>
                                 </ol>
-                                <div>
-                                    <div class="row">
-                                        <div class="col-12 mx-auto">
-                                            <div class="d-flex justify-content-between">
-                                                <h3>Detail User</h3>
-                                            </div>
-                                            <hr />
-                                            <div class="card" style="width: 70%">
-                                                <div class="card-header fw-bold">
-                                                    User Information
-                                                </div>
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">ID: ${userId.id}</li>
-                                                    <li class="list-group-item">Email: ${userId.email}</li>
-                                                    <li class="list-group-item">Full name: ${userId.fullName}</li>
-                                                    <li class="list-group-item">Phone: ${userId.phone}</li>
-                                                    <li class="list-group-item">Address: ${userId.address}</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div>Product</div>
                             </div>
                         </main>
                         <jsp:include page="../layout/footer.jsp" />

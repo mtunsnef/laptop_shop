@@ -12,28 +12,21 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
-@Getter
 @Setter
-@ToString
+@Getter
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "orders")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String email;
-    private String password;
-    private String fullName;
-    private String address;
-    private String phone;
-    private String avatar;
+    private double totalPrice;
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @OneToMany(mappedBy = "user")
-    private List<Order> orderList;
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetailList;
 }
