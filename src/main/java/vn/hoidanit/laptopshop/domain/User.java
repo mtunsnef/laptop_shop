@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import jakarta.validation.constraints.*;
 
 @Getter
 @Setter
@@ -23,8 +24,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotNull
+    @Email
     private String email;
+
+    @Min(3)
+    @NotNull
     private String password;
+
+    @NotNull
+    @Min(3)
     private String fullName;
     private String address;
     private String phone;
