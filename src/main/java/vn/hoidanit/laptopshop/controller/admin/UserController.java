@@ -71,7 +71,11 @@ public class UserController {
             @RequestParam("avtFile") MultipartFile file) {
         List<FieldError> errors = bindingResult.getFieldErrors();
         for (FieldError error : errors) {
-            System.out.println(error.getObjectName() + "-" + error.getDefaultMessage());
+            System.out.println(">>>>" + error.getField() + "-" + error.getDefaultMessage());
+        }
+
+        if (bindingResult.hasErrors()) {
+            return "admin/user/create";
         }
         String avatar = this.uploadService.handleSaveFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(user.getPassword());

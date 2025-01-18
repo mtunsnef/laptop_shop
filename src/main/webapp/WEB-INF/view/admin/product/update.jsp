@@ -12,10 +12,18 @@
                 <meta name="author" content="" />
                 <title>Dashboard - SB Admin</title>
                 <link href="/css/styles.css" rel="stylesheet" />
+                <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                 <script>
                     $(document).ready(() => {
                         const avatarFile = $("#avatarFile");
+                        const orgImage = "${updateProduct.image}";
+                        if (orgImage) {
+                            const urlImage = "/images/product/" + orgImage;
+                            $("#avatarPreview").attr("src", urlImage);
+                            $("#avatarPreview").css({ "display": "block" });
+                        }
+
                         avatarFile.change(function (e) {
                             const imgURL = URL.createObjectURL(e.target.files[0]);
                             $("#avatarPreview").attr("src", imgURL);
@@ -23,7 +31,6 @@
                         });
                     });
                 </script>
-                <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
 
             <body class="sb-nav-fixed">
@@ -33,19 +40,19 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage Products</h1>
+                                <h1 class="mt-4">Manage Users</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="/admin/product">Products</a></li>
-                                    <li class="breadcrumb-item active">Create Product</li>
+                                    <li class="breadcrumb-item"><a href="/admin/user">Products</a></li>
+                                    <li class="breadcrumb-item active">Edit Product</li>
                                 </ol>
                                 <div>
                                     <div class="row">
                                         <div class="col-md-6 col-12 mx-auto">
-                                            <h3>Create a product</h3>
+                                            <h3>Edit a product</h3>
                                             <hr />
-                                            <form:form action="/admin/product/create" method="post"
-                                                enctype="multipart/form-data" modelAttribute="newProduct">
+                                            <form:form action="/admin/product/update" method="post"
+                                                enctype="multipart/form-data" modelAttribute="updateProduct">
                                                 <c:set var="errorProductName">
                                                     <form:errors path="name" cssClass="invalid-feedback" />
                                                 </c:set>
@@ -61,6 +68,10 @@
                                                 <c:set var="errorQuantity">
                                                     <form:errors path="quantity" cssClass="invalid-feedback" />
                                                 </c:set>
+                                                <div class="mb-3" hidden>
+                                                    <label class="form-label">ID</label>
+                                                    <form:input path="id" type="text" class="form-control" />
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-12 col-md-6  mb-3">
                                                         <label class="form-label">Name:</label>
@@ -133,7 +144,7 @@
                                                         id="avatarPreview">
                                                 </div>
 
-                                                <button type="submit" class="btn btn-primary">Create</button>
+                                                <button type="submit" class="btn btn-warning">Update</button>
                                             </form:form>
                                         </div>
                                     </div>
