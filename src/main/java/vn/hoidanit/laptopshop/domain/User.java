@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import vn.hoidanit.laptopshop.service.validator.StrongPassword;
 import jakarta.validation.constraints.*;
 
 @Getter
@@ -30,8 +31,9 @@ public class User {
     @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?^{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
 
-    @Size(min = 6, message = "Password must be have at least 6 digits")
+    @Size(min = 8, message = "Password must be have at least 8 digits")
     @NotNull
+    @StrongPassword(message = "hehe")
     private String password;
 
     @NotNull
