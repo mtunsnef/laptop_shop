@@ -33,7 +33,6 @@ public class User {
 
     @Size(min = 8, message = "Password must be have at least 8 digits")
     @NotNull
-    @StrongPassword(message = "hehe")
     private String password;
 
     @NotNull
