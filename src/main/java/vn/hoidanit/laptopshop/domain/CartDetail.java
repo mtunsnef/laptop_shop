@@ -1,6 +1,6 @@
 package vn.hoidanit.laptopshop.domain;
 
-import java.util.List;
+import java.io.Serializable;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,29 +8,32 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
 @Entity
-@Table(name = "orders")
-public class Order {
+@Getter
+@Setter
+@Table(name = "cart_detail")
+public class CartDetail {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private double totalPrice;
-    private String receiverName;
-    private String receiverAddress;
-    private String receiverPhone;
-    private String status;
 
+    private long quantity;
+
+    private double price;
+
+    // cart_id: long
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderDetail> orderDetailList;
+    // product_id: long
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 }

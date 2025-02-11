@@ -31,13 +31,13 @@ public class ProductController {
     @GetMapping("/admin/product")
     public String getProductPage(Model model) {
         model.addAttribute("productL", this.productService.getAllProduct());
-        return "/admin/product/table-product";
+        return "admin/product/table-product";
     }
 
     @GetMapping("/admin/product/create")
     public String getCreateProductPage(Model model) {
         model.addAttribute("newProduct", new Product());
-        return "/admin/product/create";
+        return "admin/product/create";
     }
 
     @PostMapping("/admin/product/create")
@@ -45,7 +45,7 @@ public class ProductController {
             BindingResult bindingResult,
             @RequestParam("avtFile") MultipartFile file) {
         if (bindingResult.hasErrors()) {
-            return "/admin/product/create";
+            return "admin/product/create";
         }
         String fileImage = this.uploadService.handleSaveFile(file, "product");
         product.setImage(fileImage);
@@ -57,21 +57,21 @@ public class ProductController {
     public String getProductDetailPage(Model model, @PathVariable long id) {
         Product productById = this.productService.findProductById(id).get();
         model.addAttribute("productDetail", productById);
-        return "/admin/product/product-detail";
+        return "admin/product/product-detail";
     }
 
     @GetMapping("/admin/product/update/{id}")
     public String getEditProductPage(Model model, @PathVariable long id) {
         Product updateProduct = this.productService.findProductById(id).get();
         model.addAttribute("updateProduct", updateProduct);
-        return "/admin/product/update";
+        return "admin/product/update";
     }
 
     @PostMapping("/admin/product/update")
     public String postEditProduct(Model model, @ModelAttribute("updateProduct") @Valid Product product,
             BindingResult bindingResult, @RequestParam("avtFile") MultipartFile multipartFile) {
         if (bindingResult.hasErrors()) {
-            return "/admin/product/update";
+            return "admin/product/update";
         }
         Product updateProduct = this.productService.findProductById(product.getId()).get();
         if (updateProduct != null) {
@@ -94,7 +94,7 @@ public class ProductController {
     public String getDeleteProductPage(Model model, @PathVariable long id) {
         Product deleteProduct = this.productService.findProductById(id).get();
         model.addAttribute("deleteProduct", deleteProduct);
-        return "/admin/product/delete";
+        return "admin/product/delete";
     }
 
     @PostMapping("/admin/product/delete")

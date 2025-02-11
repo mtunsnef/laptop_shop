@@ -17,6 +17,13 @@
                 <script>
                     $(document).ready(() => {
                         const avatarFile = $("#avatarFile");
+                        const orgImage = "${updateProduct.image}";
+                        if (orgImage) {
+                            const urlImage = "/images/product/" + orgImage;
+                            $("#avatarPreview").attr("src", urlImage);
+                            $("#avatarPreview").css({ "display": "block" });
+                        }
+
                         avatarFile.change(function (e) {
                             const imgURL = URL.createObjectURL(e.target.files[0]);
                             $("#avatarPreview").attr("src", imgURL);
@@ -45,7 +52,7 @@
                                             <h3>Edit a user</h3>
                                             <hr />
                                             <form:form action="/admin/user/update" method="post"
-                                                modelAttribute="updateUser">
+                                                enctype="multipart/form-data" modelAttribute="updateUser">
                                                 <div class="mb-3" hidden>
                                                     <label class="form-label">Id:</label>
                                                     <form:input path="id" type="text" class="form-control" />
@@ -77,8 +84,8 @@
                                                     </div>
                                                     <div class="col-12 col-md-6  mb-3">
                                                         <label for="avatarFile" class="form-label">Avatar</label>
-                                                        <form:input path="avatar" class="form-control" type="file"
-                                                            id="avatarFile" name="avtFile" accept=".png, .jpg, .jpeg" />
+                                                        <input class="form-control" type="file" id="avatarFile"
+                                                            name="avtFile" accept=".png, .jpg, .jpeg" />
                                                     </div>
                                                 </div>
                                                 <div class="row">

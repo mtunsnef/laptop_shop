@@ -7,30 +7,33 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @Entity
-@Table(name = "orders")
-public class Order {
+@Table(name = "carts")
+public class Cart {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private double totalPrice;
-    private String receiverName;
-    private String receiverAddress;
-    private String receiverPhone;
-    private String status;
 
-    @ManyToOne
+    @Min(value = 0)
+    private int sum;
+
+    // user_id
+    @OneToOne()
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderDetail> orderDetailList;
+    // cart_detail_id
+    @OneToMany(mappedBy = "cart")
+    List<CartDetail> cartDetails;
 }
